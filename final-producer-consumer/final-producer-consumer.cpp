@@ -142,7 +142,7 @@ int main() {
 		flag = process(temp);
 		if (flag)
 			print(temp);
-		_sleep(300);
+		_sleep(1500);
 	}
 	return 0;
 }

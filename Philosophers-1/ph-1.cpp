@@ -95,7 +95,7 @@ int main() {
 	while (1) {
 		time_t t;
 		srand((unsigned)time(&t));
-		random = rand() % 5 + 1;//随机函数产生随机数
+		random = rand() % 5 + 1;//随机函数产生随机数 
 		cout << random << "位哲学家饿了" << endl;
 		for (int h = 0; h < random; h++)
 			hungry[h] = 0;

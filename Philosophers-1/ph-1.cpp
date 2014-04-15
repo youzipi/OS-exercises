@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<stdlib.h>
 #include<time.h>
 using namespace std;
@@ -11,16 +11,16 @@ const int eating = 2;
 typedef struct Pcb {
 	int num;      
 	int state;
-	struct Pcb *next;   //×èÈûÊ±µÄË³Ğò
+	struct Pcb *next;   //é˜»å¡æ—¶çš„é¡ºåº
 }Pcb, *link;
-int fork[5] = { 1, 1, 1, 1, 1 };//²Í²æ£»
+int fork[5] = { 1, 1, 1, 1, 1 };//é¤å‰ï¼›
 link ph;
 void philosopher(link ph);
 
 bool P(int &c1,int &c2) {
 	if (c1 && c2) {
 		c1 = c2 = 0;
-		//cout << c1 << "ºÅÕÜÑ§¼Ò»ñµÃ²Í²æ" << c1 << " " << c2 << endl;
+		//cout << c1 << "å·å“²å­¦å®¶è·å¾—é¤å‰" << c1 << " " << c2 << endl;
 		return true;
 	}
 	else
@@ -32,25 +32,25 @@ void V(int &c1,int &c2) {
 }
 void init(link &l) {
 	//for (int i = 0; i < NUM; i++) {
-		l = (link)malloc(sizeof(Pcb));//½¨Á¢ĞÂµÄ½áµã,²¢³õÊ¼»¯ÎªÉú²úÕß
+		l = (link)malloc(sizeof(Pcb));//å»ºç«‹æ–°çš„ç»“ç‚¹,å¹¶åˆå§‹åŒ–ä¸ºç”Ÿäº§è€…
 		//ph->num = i + 1;
 		l->state = thinking;
 		l->next = NULL;
 
 }
 void think(int i) {
-	cout << i << "ºÅÕÜÑ§¼ÒÕıÔÚË¼¿¼¡£¡£¡£" << endl;
+	cout << i << "å·å“²å­¦å®¶æ­£åœ¨æ€è€ƒã€‚ã€‚ã€‚" << endl;
 }
 void eat() {
 	link p = ph;
 	while (p->next != NULL) {
 		if (p->next->state == eating) {
-			cout << p->next->num << "ºÅÕÜÑ§¼ÒÕıÔÚ½ø²Í¡£¡£¡£" << endl;
+			cout << p->next->num << "å·å“²å­¦å®¶æ­£åœ¨è¿›é¤ã€‚ã€‚ã€‚" << endl;
 			V(fork[(p->next->num + 1) % 5], fork[p->next->num]);
 			p->next = p->next->next;
 		}
 		else
-			cout << p->next->num << "ºÅÕÜÑ§¼ÒÔÚµÈ´ı²Í²æ¡£¡£¡£" << endl;
+			cout << p->next->num << "å·å“²å­¦å®¶åœ¨ç­‰å¾…é¤å‰ã€‚ã€‚ã€‚" << endl;
 	}
 	cout << "---------------------" << endl;
 	philosopher(ph);
@@ -58,7 +58,7 @@ void eat() {
 }
 
 void getfork(int i, int t) {
-	cout << t << "ºÅÕÜÑ§¼Ò»ñµÃ²Í²æ" << t << " " << (t+1) % 5 << endl;
+	cout << t << "å·å“²å­¦å®¶è·å¾—é¤å‰" << t << " " << (t+1) % 5 << endl;
 }
 
 void philosopher(link ph) {
@@ -95,8 +95,8 @@ int main() {
 	while (1) {
 		time_t t;
 		srand((unsigned)time(&t));
-		random = rand() % 5 + 1;//Ëæ»úº¯Êı²úÉúËæ»úÊı
-		cout << random << "Î»ÕÜÑ§¼Ò¶öÁË" << endl;
+		random = rand() % 5 + 1;//éšæœºå‡½æ•°äº§ç”Ÿéšæœºæ•°
+		cout << random << "ä½å“²å­¦å®¶é¥¿äº†" << endl;
 		for (int h = 0; h < random; h++)
 			hungry[h] = 0;
 		for (int i = 0; i < random; i++) {

@@ -1,3 +1,4 @@
+#pragma execution_character_set("utf-8")
 #include<iostream>
 #include<time.h>
 #include<stdlib.h>
@@ -15,11 +16,11 @@ int buf[MAX];
 int mutex = 1;
 int empty = MAX;
 int full = 0;
-int in = 0;	//Éú²úÖ¸Õë
-int out = 0;//Ïû·ÑÖ¸Õë
+int in = 0;	//ç”Ÿäº§æŒ‡é’ˆ
+int out = 0;//æ¶ˆè´¹æŒ‡é’ˆ
 
 typedef struct Pcb {
-	int name;      //½ø³ÌÃû,p ,c
+	int name;      //è¿›ç¨‹å,p ,c
 	int num;         
 }Pcb, *link;
 
@@ -27,13 +28,13 @@ link p[N];
 link c[N];
 void init() {
 	for (int i = 0; i < N; i++) {
-		p[i] = (link)malloc(sizeof(Pcb));//½¨Á¢ĞÂµÄ½áµã,²¢³õÊ¼»¯ÎªÉú²úÕß
+		p[i] = (link)malloc(sizeof(Pcb));//å»ºç«‹æ–°çš„ç»“ç‚¹,å¹¶åˆå§‹åŒ–ä¸ºç”Ÿäº§è€…
 		p[i]->name = Producer;
 		p[i]->num = i+1;
 		//p[i]->state = ready;
 	}
 	for (int i = 0; i < N; i++) {
-		c[i] = (link)malloc(sizeof(Pcb));//½¨Á¢ĞÂµÄ½áµã,²¢³õÊ¼»¯ÎªÉú²úÕß
+		c[i] = (link)malloc(sizeof(Pcb));//å»ºç«‹æ–°çš„ç»“ç‚¹,å¹¶åˆå§‹åŒ–ä¸ºç”Ÿäº§è€…
 		c[i]->num = i + 1;
 		c[i]->name = Consumer;
 		//c[i]->state = ready;
@@ -122,17 +123,17 @@ int main() {
 	while (1) {
 
 		srand((unsigned)time(&t));
-		random = rand() % 4;//Ëæ»úº¯Êı²úÉúËæ»úÊı
+		random = rand() % 4;//éšæœºå‡½æ•°äº§ç”Ÿéšæœºæ•°
 		i = random % 2;
 		random = random / 2;
 		cout << "random:" << random << endl;
-		if (full == 0) {	//»º´æÇøÎª¿Õ£¬Ö´ĞĞÉú²úÕß½ø³Ì
+		if (full == 0) {	//ç¼“å­˜åŒºä¸ºç©ºï¼Œæ‰§è¡Œç”Ÿäº§è€…è¿›ç¨‹
 			temp = p[i];
 		}
-		else if (empty == 0) {//»º´æÇøÒÑÂú£¬Ö´ĞĞÏû·ÑÕß½ø³Ì
+		else if (empty == 0) {//ç¼“å­˜åŒºå·²æ»¡ï¼Œæ‰§è¡Œæ¶ˆè´¹è€…è¿›ç¨‹
 			temp = c[i];
 		}
-		else if (random) {	//¸ù¾İËæ»úÊıÖ´ĞĞ½ø³Ì
+		else if (random) {	//æ ¹æ®éšæœºæ•°æ‰§è¡Œè¿›ç¨‹
 			temp = p[i];
 		}
 		else {

@@ -1,4 +1,4 @@
-#include "iostream"
+﻿#include "iostream"
 #include "stdlib.h"
 #include "string.h"
 using namespace std;
@@ -12,7 +12,7 @@ typedef struct PCB {
 	int priority;   /*进程优先数*/
 	int time; /*进程到完成还要的时间*/
 	struct PCB *next; /*链指针*/
-}PCB,*link;
+}PCB, *link;
 //PCB *finish, *ready;// *run; /*队列指针*/
 PCB pcbs[N];
 PCB *p;
@@ -40,8 +40,8 @@ void init() {
 	int i;
 	for (i = 0; i < N; i++) {
 		pcbs[i].name = i;
-		pcbs[i].time = i+2;
-		pcbs[i].priority = 2*i;
+		pcbs[i].time = i + 2;
+		pcbs[i].priority = 2 * i + 5;
 	}
 }
 
@@ -63,22 +63,22 @@ void print(PCB *p) {
 	link ph = p;
 	cout << "name priority " << endl;
 	while (NULL != ph->next) {
-		cout << ph->next->name << " " << ph->next->priority << endl;
+		cout << ph->next->name << "	" << ph->next->priority << endl;
 		ph = ph->next;
 	}
 }
 
 void sort() {
-	p = (PCB * )malloc(sizeof(PCB));
+	p = (PCB *)malloc(sizeof(PCB));
 
 	link pHead = p;
 	link pTmp;
-	int i,j;
+	int i, j;
 	//int index = i;
 	PCB temp;
 	//int max_priority = pcbs[i].priority;
 	for (i = 0; i < N - 1; i++) {
-		for (j = i+1; j < N; j++) {
+		for (j = i + 1; j < N; j++) {
 			if (pcbs[j].priority > pcbs[i].priority) {
 				temp = pcbs[i];
 				pcbs[i] = pcbs[j];
@@ -97,11 +97,11 @@ void privilege(PCB *p) {
 	int i, j;
 	PCB *ph = p;
 	PCB *t;
-	while (NULL != ph->next){
+	while (NULL != ph->next) {
 		ph->next->priority--;
 		ph->next->time--;
-		cout << "name" <<"	time" <<"	priority" << endl;
-		cout << ph->next->name <<"	"<< ph->next->priority <<"	"<< p->next->time << endl;
+		cout << "name" << "	time" << "	priority" << endl;
+		cout << ph->next->name << "	" << ph->next->time << "	" << p->next->priority << endl;
 		t = ph->next;
 		ph->next = ph->next->next;
 		if ((0 != ph->next) && (t->time != 0)) {
